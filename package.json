@@ -1,0 +1,33 @@
+{
+  "name": "namaste-react-v2",
+  "version": "1.0.0",
+  "description": "This is React learning project",
+  "main": "App.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narahari27/React-learn-v2.git"
+  },
+  "keywords": [],
+  "author": "Narahari Gudagudi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/narahari27/React-learn-v2/issues"
+  },
+  "homepage": "https://github.com/narahari27/React-learn-v2#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
