@@ -3,6 +3,7 @@ import { LOGO_URL } from "../utils/constants";
 
 const Header = () => {
   const [btnNameReact, setbtnNameReact] = useState("Login");
+  
   useEffect(() => {
     console.log("useEffect called")
   });
