@@ -2,12 +2,13 @@ import RestaurantCard from "./RestaurantCard";
 
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   //Local State variable - Superpowerful variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [filteredRestaurants , setFilteredRestaurants] = useState([]);
-  const [searchText , setSearchText] = useState("");
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   console.log("Body rendered");
 
@@ -25,40 +26,56 @@ const Body = () => {
       //optional chaining
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurants(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
-  return listOfRestaurants.length === 0?(<Shimmer/>) : (
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="searchBlock">
         <div className="search">
-          <input type="text" className="search-box" value = {searchText} onChange={
-            (e) =>{
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
               setSearchText(e.target.value);
-            }
-          }/>
-          <button onClick={()=>{
-           const filteredRes = listOfRestaurants.filter(
-              (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())
-            );
-            setFilteredRestaurants(filteredRes);
-          }}>Search</button>
+            }}
+          />
+          <button
+            onClick={() => {
+              const filteredRes = listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilteredRestaurants(filteredRes);
+            }}
+          >
+            Search
+          </button>
         </div>
         <div
-        className="filter"
-        onClick={() => {
-          const filteredList = listOfRestaurants.filter(
-            (res) => res.info.avgRating > 4.5
-          );
-          setListOfRestaurants(filteredList);
-        }}
-      >
-        <button>Top Rated Restaurant</button>
-      </div>
+          className="filter"
+          onClick={() => {
+            const filteredList = listOfRestaurants.filter(
+              (res) => res.info.avgRating > 4.5
+            );
+            setListOfRestaurants(filteredList);
+          }}
+        >
+          <button>Top Rated Restaurant</button>
+        </div>
       </div>
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
